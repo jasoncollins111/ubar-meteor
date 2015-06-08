@@ -19,7 +19,7 @@ if (Meteor.isClient) {
     }
   });
 }
-
+// HTTP.get(url, [callOptions], [asyncCallback])
 
 if (Meteor.isServer) {
   
@@ -27,6 +27,7 @@ if (Meteor.isServer) {
     ServiceConfiguration.configurations.remove({
     service: 'uber'
     }); 
+    
     ServiceConfiguration.configurations.insert({
       service : "uber", 
       client_id : "QUcKJJhnZIlkYM4_bnCkK5FbXbPrpELz", 
@@ -34,6 +35,8 @@ if (Meteor.isServer) {
       server_token : "GsbyGzKLvuFY_5HKnDRwQ1X-qI0ZovFd6UV21Ate", 
       redirect_uri : "http://localhost:3000/auth/uber/callback" 
     })
+
+
     // code to run on server at startup
     console.log('server up!')
   });
