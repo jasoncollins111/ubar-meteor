@@ -7,3 +7,9 @@
 meteor-platform
 autopublish
 insecure
+accounts-base
+accounts-oauth
+accounts-ui
+uber-oauth
+accounts-uber
+service-configuration

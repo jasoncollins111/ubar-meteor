@@ -1,0 +1,21 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "uber-oauth": {},
+      "accounts-uber": {}
+    },
+    "packages": {
+      "uber-oauth": {
+        "git": "https://github.com/picsoung/meteor-uber-oauth.git",
+        "branch": "master",
+        "commit": "0743ecc5e13ae6f75aaab385123f50c29490a15a"
+      },
+      "accounts-uber": {
+        "git": "https://github.com/picsoung/meteor-accounts-uber.git",
+        "tag": "v0.0.10",
+        "commit": "9366ed8529092bc324d576e474615a483dd5fd41"
+      }
+    }
+  }
+}

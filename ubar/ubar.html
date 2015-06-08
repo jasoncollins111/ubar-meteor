@@ -3,12 +3,29 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+ <h1>UBAR!!!</h1>
 
-  {{> hello}}
+ {{> login}}
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+  <!-- <button>LOGIN !</button> -->
 </template>
+
+<template name="login">
+    {{#if currentUser}}
+      {{currentUser.services.uber.name}}
+      <button id="logout">Logout</button>
+    {{else}}
+      <button id="uber-login" type="button" class="btn btn-default">Login</button>
+    {{/if}}
+</template>
+
+
+
+
+
+
+
+
+
