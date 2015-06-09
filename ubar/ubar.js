@@ -1,7 +1,7 @@
 
 if (Meteor.isClient) {
 
-  Template.login.events({
+  Template.home.events({
     'click #uber-login': function(event) {
         Meteor.loginWithUber(function(err){
             if (err) {
@@ -16,8 +16,15 @@ if (Meteor.isClient) {
                 throw new Meteor.Error("Logout failed");
             }
         })
+    }, 
+    'click #products': function(event) {
+        HTTP.get('https://api.uber.com/v1/products')
+
+        
     }
+
   });
+  
 }
 // HTTP.get(url, [callOptions], [asyncCallback])
 
@@ -33,10 +40,9 @@ if (Meteor.isServer) {
       client_id : "QUcKJJhnZIlkYM4_bnCkK5FbXbPrpELz", 
       client_secret : "IQ5FBDEdScBuHgIreXuYUd6rbvWHYiRVnrRsObEQ", 
       server_token : "GsbyGzKLvuFY_5HKnDRwQ1X-qI0ZovFd6UV21Ate", 
-      redirect_uri : "http://localhost:3000/auth/uber/callback" 
+      redirect_uri : "http://localhost:3000/_oauth/uber?close" 
     })
-
-
+ 
     // code to run on server at startup
     console.log('server up!')
   });

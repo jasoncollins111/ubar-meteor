@@ -1,6 +1,7 @@
 {
   "packages": {
     "uber-oauth": {},
-    "accounts-uber": {}
+    "accounts-uber": {},
+    "iron-router": {}
   }
 }
