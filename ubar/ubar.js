@@ -14,7 +14,6 @@ if (Meteor.isClient) {
       var firstName = user[0].profile.first_name
       var lastName = user[0].profile.last_name
       return firstName + " " + lastName
-      // return Session.get('name');
     }
   }) 
 
@@ -29,8 +28,6 @@ if (Meteor.isClient) {
               var user = Meteor.users.find().fetch();
               var thisUser = user[0].profile;
               console.log(thisUser)
-              Session.set('name', thisUser.first_name + ' ' + thisUser.last_name)
-              // Router.go('map')
             }
         });
     },
@@ -62,18 +59,22 @@ if (Meteor.isClient) {
       var params = {
         start_latitude: '37.7833',
         start_longitude: '-122.4167',
+        // end_latitude: request.body.end_latitude,
+      // end_longitude: request.body.end_longitude,
         product_id: "a1111c8c-c720-46c3-8534-2fcdd730040d"
-      }
-      // params = JSON.stringify(params)  
-      console.log(JSON.stringify(params), accessToken)
+      }  
       Meteor.call('postAuthorizedRequest', '/v1/requests', accessToken, params,  function(err, res){
         if (err) {
-          throw new Meteor.Error('request failed', err)
+          throw new Meteor.Error('request failed here', err)
         } else{
           console.log(res)
+          Session.set('eta', res.eta)
         }
       })
     }
+  })
+  Meteor.methods({
+
   })
 }
 // HTTP.get(url, [callOptions], [asyncCallback])
@@ -108,15 +109,18 @@ if (Meteor.isServer) {
       return response
     },
     postAuthorizedRequest: function(endpoint, accessToken, parameters, callback) {
+      this.unblock()
       var params = {
+        data: parameters,
+
         headers: {
           Authorization: "Bearer " + accessToken,
           'Content-Type': 'application/json'
         }
       }
-      // params = JSON.stringify(params)
       var response = HTTP.post('https://sandbox-api.uber.com'+endpoint, params).data
-      console.log(response)
+      console.log("response is:",response)
+      return response
     }
     // code to run on server at startup
   });
