@@ -15,11 +15,12 @@ Router.map(function () {
   this.route('home', {
     path: '/',
       onBeforeAction: function () {
-    if (! Meteor.user()) {
+    if (!Meteor.user()) {
       if (Meteor.loggingIn()) {
       }
       else{
-        Router.go('callback');
+        Router.go('home');
+        // this.next();
       }
     }
     this.next()

@@ -15,3 +15,6 @@ uber-oauth
 accounts-uber
 service-configuration
 iron:router
+http
+mrt:geolocation
+mdg:geolocation

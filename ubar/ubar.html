@@ -1,38 +1,24 @@
-
-
-<!-- <body> -->
- <!-- <h1>UBAR!!!</h1> -->
-
- <!-- {{> login}} -->
-<!-- </body> -->
-
-<template name="login">
- <h1>UBAR!!!</h1>
-
-    {{#if currentUser}}
-      {{currentUser.services.uber.name}}
-      {{> callback}}
-      <button id="logout">Logout</button>
-    {{else}}
-      <button id="uber-login" type="button" class="btn btn-default">Login</button>
-    {{/if}}
-</template>
-
 <template name="home">
-  <h2>Home</h2>
-  <p>You are on the home screen.</p>
   {{#if currentUser}}
-      {{currentUser.services.uber.name}}
-      <button id="products">Products</button>
-      <button id="logout">Logout</button>
+    <h3>Hi! {{name}}</h3>
+    {{#if location}}
+      <p>{{location}}</p>
     {{else}}
-      <button id="uber-login" type="button" class="btn btn-default">Login</button>
+      <p>Looking for you</p>
     {{/if}}
+    <button id="profile"> Profile</button>
+    <button id="logout">Logout</button>
+  {{else}}
+    <button id="uber-login" type="button" class="btn btn-default">Login</button>
+  {{/if}}
+</template>
+
+<template name="location">
+  
 </template>
 
 
 
-<!-- GET /v1/products -->
 
 
 
