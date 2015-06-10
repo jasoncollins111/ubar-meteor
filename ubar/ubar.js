@@ -47,17 +47,32 @@ if (Meteor.isClient) {
         accessToken = user[0].services.uber.accessToken      
         console.log(accessToken)
         Meteor.call('getAuthorizedRequest', '/v1/me', accessToken, function(err, res){
-            if (err) {
-                throw new Meteor.Error("Logout failed");
-            } else{
-              console.log(res)
-              var pic = res.picture
-              // var picture = []
-              // picture.push(pic)
-              Session.set('picture', pic)
-             
-            }
+          if (err) {
+              throw new Meteor.Error("errorrz");
+          } else{
+            console.log(res)
+            var pic = res.picture
+            Session.set('picture', pic)   
+          }
         })
+    },
+    'click #request': function() {
+      var user = Meteor.users.find().fetch();
+      accessToken = user[0].services.uber.accessToken 
+      var params = {
+        start_latitude: '37.7833',
+        start_longitude: '-122.4167',
+        product_id: "a1111c8c-c720-46c3-8534-2fcdd730040d"
+      }
+      // params = JSON.stringify(params)  
+      console.log(JSON.stringify(params), accessToken)
+      Meteor.call('postAuthorizedRequest', '/v1/requests', accessToken, params,  function(err, res){
+        if (err) {
+          throw new Meteor.Error('request failed', err)
+        } else{
+          console.log(res)
+        }
+      })
     }
   })
 }
@@ -79,7 +94,7 @@ if (Meteor.isServer) {
       server_token : "GsbyGzKLvuFY_5HKnDRwQ1X-qI0ZovFd6UV21Ate", 
       redirect_uri : "http://localhost:3000/_oauth/uber?close" 
     })
-
+  })
   Meteor.methods({
  
     getAuthorizedRequest: function(endpoint, accessToken, callback) {
@@ -91,10 +106,20 @@ if (Meteor.isServer) {
       var response = Meteor.http.call('GET', 'https://sandbox-api.uber.com'+endpoint, params).data
       console.log(response)
       return response
+    },
+    postAuthorizedRequest: function(endpoint, accessToken, parameters, callback) {
+      var params = {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+          'Content-Type': 'application/json'
+        }
+      }
+      // params = JSON.stringify(params)
+      var response = HTTP.post('https://sandbox-api.uber.com'+endpoint, params).data
+      console.log(response)
     }
-  })
     // code to run on server at startup
-    console.log('server up!')
   });
+  console.log('server up!')
 }
 
