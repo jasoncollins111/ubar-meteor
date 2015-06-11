@@ -8,6 +8,7 @@ standard-app-packages
 meteor-platform
 autopublish
 insecure
+dburles:google-maps
 accounts-base
 accounts-oauth
 accounts-ui
@@ -18,3 +19,5 @@ iron:router
 http
 mrt:geolocation
 mdg:geolocation
+reactive-var
+

@@ -1,10 +1,15 @@
+Markers = new Mongo.Collection('markers');
 
 if (Meteor.isClient) {
+  
   Template.home.helpers({
     location: function() {
       var location = Geolocation.currentLocation()
-      var latitude = location.coords.latitude
-      var longitude = location.coords.longitude
+      var latitude = location.coords.latitude.toFixed(4)
+      var longitude = location.coords.longitude.toFixed(4)
+      Session.set('latitude', latitude)
+      Session.set('longitude', longitude)
+      GoogleMaps.load({key: 'AIzaSyCtNUFOJI2JKSkUr20zDjhst0Ko8xSruP8'});
       // var local = 
       console.log()
       return latitude +' '+longitude
@@ -14,9 +19,50 @@ if (Meteor.isClient) {
       var firstName = user[0].profile.first_name
       var lastName = user[0].profile.last_name
       return firstName + " " + lastName
+    },
+    eta: function(){
+      var timeOfArrival = Session.get('eta')
+      return timeOfArrival
     }
-  }) 
+  })
 
+  Template.map.helpers({  
+    mapOptions: function() {
+      var lat = Session.get('latitude')
+      var lon = Session.get('longitude')
+      if (GoogleMaps.loaded()) {
+        return {
+          center: new google.maps.LatLng(lat, lon),
+          zoom: 17,
+
+        };
+      }
+    }
+  });
+
+  Template.map.onCreated(function() {  
+    GoogleMaps.ready('map', function(map) {
+      google.maps.event.addListener(map.instance, 'click', function(event) {
+        var lat = event.latLng.lat()
+        var lng = event.latLng.lng()
+        var marker = new google.maps.Marker({
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: new google.maps.LatLng(lat, lng),
+          map: map.instance,
+          // We store the document _id on the marker in order 
+          // to update the document within the 'dragend' event below.
+        
+        });
+
+        // This listener lets us drag markers on the map and update their corresponding document.
+        // google.maps.event.addListener(marker, 'dragend', function(event) {
+        //   // Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
+        //   console.log('dragging')
+        // });   
+      });
+    }); 
+  }); 
   Template.home.events({
     // var user = Meteor.users.find().fetch();
     // var thisUser = user[0].profile;
@@ -55,35 +101,31 @@ if (Meteor.isClient) {
     },
     'click #request': function() {
       var user = Meteor.users.find().fetch();
-      accessToken = user[0].services.uber.accessToken 
+      var accessToken = user[0].services.uber.accessToken 
+      var latitude = Session.get('latitude')
+      var longitude = Session.get('longitude')
+      
       var params = {
-        start_latitude: '37.7833',
-        start_longitude: '-122.4167',
-        // end_latitude: request.body.end_latitude,
-      // end_longitude: request.body.end_longitude,
+        start_latitude: latitude,
+        start_longitude: longitude,
         product_id: "a1111c8c-c720-46c3-8534-2fcdd730040d"
-      }  
+      }
+
       Meteor.call('postAuthorizedRequest', '/v1/requests', accessToken, params,  function(err, res){
         if (err) {
           throw new Meteor.Error('request failed here', err)
         } else{
-          console.log(res)
+          console.log("request results:",res)
           Session.set('eta', res.eta)
         }
       })
     }
   })
-  Meteor.methods({
-
-  })
 }
-// HTTP.get(url, [callOptions], [asyncCallback])
 
 if (Meteor.isServer) {
-  // var accessToken = Meteor.users
-  // console.log(accessToken)
-  // console.log(accessToken)
   Meteor.startup(function () {
+
     ServiceConfiguration.configurations.remove({
     service: 'uber'
     }); 
@@ -122,7 +164,6 @@ if (Meteor.isServer) {
       console.log("response is:",response)
       return response
     }
-    // code to run on server at startup
   });
   console.log('server up!')
 }
