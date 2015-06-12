@@ -51,7 +51,7 @@ if (Meteor.isClient) {
   }); 
   Template.home.events({
     'click #uber-login': function(event) {
-        Meteor.loginWithUber(function(err){
+        Meteor.loginWithUber({ loginStyle: 'redirect' }, function(err){
             if (err) {
                 throw new Meteor.Error("Uber login failed");
             } else{
