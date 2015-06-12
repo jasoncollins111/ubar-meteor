@@ -1,21 +1,24 @@
 <template name="home">
   {{#if currentUser}}
     <h3>Hi! {{name}}</h3>
+    
     {{#if location}}
       <p>You're location is {{location}}</p>
     {{else}}
       <p>Looking for you're coordinates</p>
     {{/if}}
+    
     {{#if eta}}
     <p>Your ride will be there in {{eta}} minutes</p>
     {{else}}
     <button id="request"> Request Ride</button>
     {{/if}}
-    <button id="profile"> Profile</button>
+
     <button id="logout">Logout</button>
   {{else}}
     <button id="uber-login" type="button" class="btn btn-default">Login</button>
   {{/if}}
+  
   {{> map}}
 </template>
 
@@ -25,17 +28,7 @@
   </div>
 </template>  
 
-
-<!-- Template.body.onCreated(function() {
-  // We can use the `ready` callback to interact with the map API once the map is ready.
-  GoogleMaps.ready('exampleMap', function(map) {
-    // Add a marker to the map once it's ready
-    var marker = new google.maps.Marker({
-      position: map.options.center,
-      map: map.instance
-    });
-  }); -->
-<!-- }); -->
+  
 
 
 

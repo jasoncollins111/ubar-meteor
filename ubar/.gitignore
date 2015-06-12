@@ -1,0 +1,11 @@
+# Meteor
+.meteor/local
+.meteor/meteorite
+
+# Tests
+
+# AWS Key
+server/keys.js
+
+# System Files
+.DS_Store
