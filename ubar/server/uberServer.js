@@ -7,10 +7,17 @@ if (Meteor.isServer) {
     
     ServiceConfiguration.configurations.insert({
       service : "uber", 
-      client_id : Meteor.settings.client_id, 
-      client_secret : Meteor.settings.client_secret, 
-      server_token : Meteor.settings.server_token, 
-      redirect_uri : Meteor.settings.redirect_uri 
+      client_id : "QUcKJJhnZIlkYM4_bnCkK5FbXbPrpELz", 
+      client_secret : "IQ5FBDEdScBuHgIreXuYUd6rbvWHYiRVnrRsObEQ", 
+      server_token : "GsbyGzKLvuFY_5HKnDRwQ1X-qI0ZovFd6UV21Ate", 
+      redirect_uri : "https://ubar.meteor.com/_oauth/uber?close" 
+
+
+
+      // client_id : Meteor.settings.client_id, 
+      // client_secret : Meteor.settings.client_secret, 
+      // server_token : Meteor.settings.server_token, 
+      // redirect_uri : Meteor.settings.redirect_uri 
       // http://localhost:3000/_oauth/uber?close
       // https://ubar.meteor.com/_oauth/uber?close
     })
