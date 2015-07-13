@@ -7,9 +7,9 @@ if (Meteor.isServer) {
 
     ServiceConfiguration.configurations.insert({
       service : "uber",
-      client_id : "QUcKJJhnZIlkYM4_bnCkK5FbXbPrpELz",
-      client_secret : "IQ5FBDEdScBuHgIreXuYUd6rbvWHYiRVnrRsObEQ",
-      server_token : "GsbyGzKLvuFY_5HKnDRwQ1X-qI0ZovFd6UV21Ate",
+      client_id : "config.client_id",
+      client_secret : "config.client_secret",
+      server_token : "config.server_token",
       redirect_uri : "http://localhost:3000/_oauth/uber?close"
 
     })

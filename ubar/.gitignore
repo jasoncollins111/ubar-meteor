@@ -5,7 +5,7 @@
 # Tests
 
 # UBER Keys
-server/keys.js
+server/config.js
 
 # System Files
 .DS_Store
