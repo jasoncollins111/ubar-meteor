@@ -1,13 +1,13 @@
 <template name="home">
   {{#if currentUser}}
     <h3>Hi! {{name}}</h3>
-    
+
     {{#if location}}
       <p>You're location is {{location}}</p>
     {{else}}
       <p>Looking for you're coordinates</p>
     {{/if}}
-    
+
     {{#if eta}}
     <p>Your ride will be there in {{eta}} minutes</p>
     {{else}}
@@ -16,19 +16,19 @@
 
     <button id="logout">Logout</button>
   {{else}}
-    <button id="uber-login" type="button" class="btn btn-default">Login</button>
+    <button id="uber-login" type="button" class="btn btn-default login-buttons-image-uber">Login</button>
   {{/if}}
-  
+
   {{> map}}
 </template>
 
-<template name="map">  
+<template name="map">
   <div class="map-container">
     {{> googleMap name="map" options=mapOptions}}
   </div>
-</template>  
+</template>
 
-  
+
 
 
 
