@@ -1,0 +1,8 @@
+{
+  "name": "uber-oauth",
+  "description": "Uber Oauth connect flow",
+  "homepage": "https://github.com/picsoung/meteor-uber-oauth",
+  "author": "Nicolas Grenié <nicolas@3scale.net>",
+  "version": "0.0.6",
+  "git": "https://github.com/picsoung/meteor-uber-oauth.git"
+}

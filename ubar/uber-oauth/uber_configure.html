@@ -1,0 +1,16 @@
+<template name="configureLoginServiceDialogForUber">
+  <p>
+    First, you'll need to register your app on Uber. Follow these steps:
+  </p>
+  <ol>
+    <li>
+      Visit <a href="https://login.uber.com/applications" target="_blank">https://login.uber.com/applications</a>
+    </li>
+    <li>
+      Set Drop-ins domains to: <span class="url">{{siteUrl}}</span>
+    </li>
+    <li>
+      Set Redirect URI(s) to: <span class="url">{{siteUrl}}_oauth/uber?close</span>
+    </li>
+  </ol>
+</template>
