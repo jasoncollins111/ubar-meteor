@@ -12,8 +12,8 @@ dburles:google-maps
 accounts-base
 accounts-oauth
 accounts-ui
-uber-oauth
-accounts-uber
+
+
 service-configuration
 iron:router
 http
