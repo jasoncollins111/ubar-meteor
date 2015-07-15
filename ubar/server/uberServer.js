@@ -28,18 +28,7 @@ if (Meteor.isServer) {
     },
     postAuthorizedRequest: function(endpoint, accessToken, parameters, callback) {
       this.unblock()
-      var params = {
-        data: parameters,
-
-        headers: {
-          Authorization: "Bearer " + accessToken,
-          'Content-Type': 'application/json'
-        }
-      }
-      var response = HTTP.post('https://sandbox-api.uber.com'+endpoint, params).data
-      console.log("response is:",response)
-      return response
-    }
+      //CODE GOES HERE
   });
   console.log('server up!')
 }

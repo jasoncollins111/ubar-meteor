@@ -1,10 +1,10 @@
 METEOR_SETTINGS={
 
-client_id :"QUcKJJhnZIlkYM4_bnCkK5FbXbPrpELz",
+client_id :"",
 
-client_secret : "IQ5FBDEdScBuHgIreXuYUd6rbvWHYiRVnrRsObEQ",
+client_secret : "",
 
-server_token : "GsbyGzKLvuFY_5HKnDRwQ1X-qI0ZovFd6UV21Ate",
+server_token : "",
 
 redirect_uri : "http://localhost:3000/_oauth/uber?close"
 

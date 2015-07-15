@@ -70,39 +70,7 @@ if (Meteor.isClient) {
         })
     },
     'click #request': function() {
-      var user = Meteor.users.find().fetch();
-      var accessToken = user[0].services.uber.accessToken
-      var latitude = Session.get('latitude')
-      var longitude = Session.get('longitude')
-
-      var uberX;
-
-      Meteor.call('getAuthorizedRequest', '/v1/products?latitude='+latitude+'&longitude='+longitude, accessToken, function(err,res){
-        if(err){
-          throw new Meteor.Error('request failed at get',err)
-        } else{
-          console.log('get request:',res)
-          uberX = res.products[0].product_id
-        }
-      })
-
-      var params = {
-        start_latitude: latitude,
-        start_longitude: longitude,
-        product_id: "2143f90b-ce68-4f6d-a113-4872b207e626"
-      }
-
-
-
-
-      Meteor.call('postAuthorizedRequest', '/v1/requests', accessToken, params,  function(err, res){
-        if (err) {
-          throw new Meteor.Error('post request failed here', err)
-        } else{
-          console.log("request results:",res)
-          Session.set('eta', res.eta)
-        }
-      })
+      //CODE GOES HERE
     }
   })
 }
